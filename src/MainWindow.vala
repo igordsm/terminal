@@ -1189,7 +1189,6 @@ namespace Terminal {
         private void on_get_text (Gtk.Clipboard board, string? intext) {
             /* if unsafe paste alert is enabled, show dialog */
             if (Application.settings.get_boolean ("unsafe-paste-alert") && !unsafe_ignored ) {
-
                 if (intext == null) {
                     return;
                 }
@@ -1201,7 +1200,8 @@ namespace Terminal {
 
                 if ((text.index_of ("sudo") > -1) && (text.index_of ("\n") != 0)) {
                     var d = new UnsafePasteDialog (this);
-                    if (d.run () == 1) {
+                    var result = d.run ();
+                    if (result != 0) {
                         d.destroy ();
                         return;
                     }

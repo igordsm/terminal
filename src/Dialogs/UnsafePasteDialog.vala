@@ -46,6 +46,8 @@ public class Terminal.UnsafePasteDialog : Granite.MessageDialog {
         Terminal.Application.settings.bind (
             "unsafe-paste-alert", show_protection_warnings, "active", SettingsBindFlags.DEFAULT
         );
+
+        set_default_response (1);
     }
 
     private void on_ignore () {
